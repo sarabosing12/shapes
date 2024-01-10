@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    canvas {
+      border: 3px solid rebeccapurple;
+    }
+    h2{
+      position: fixed;
+      bottom: 611px;
+      font-size: 35px;
+      color: blue;
+      letter-spacing: 13px;
+    }
+  </style>
+</head>
+<body>
+  
+<canvas id="myCanvas" width="550" height="550"></canvas>
+
+<script>
+  // Get the canvas element and its context
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+
+  // Draw circles using arc method
+  drawCircle(50, 50, 30, 'yellow'); // Circle in the top-left corner
+  drawCircle(150, 50, 30, 'pink'); // Circle in the top-middle
+  drawCircle(250, 50, 30, 'orange'); // Circle in the top-right corner
+
+  function drawCircle(x, y, radius, color) {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+  }
+
+  // Draw other shapes
+  drawSquare(300, 20, 100, 'green'); // Square - Positioned beside the orange circle
+  drawRectangle(600, 200, 150, 80, 'blue'); // Rectangle
+  drawOval(470, 90, 50, 70, 'purple');
+
+  drawTriangle(50, 300, 100, 'cyan'); // Triangle
+  drawHexagon(200, 300, 'gold'); // Hexagon
+  drawParallelogram(350, 300, 'magenta'); // Parallelogram
+
+  drawTrapezoid(50, 450, 'lime'); // Trapezoid
+  drawStar(200, 450, 'teal'); // Star
+  drawOctagon(400, 450, 'pink'); // Octagon
+
+  // Functions to draw various shapes
+  function drawSquare(x, y, size, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, size, size);
+    ctx.strokeRect(x, y, size, size);
+  }
+
+  function drawRectangle(x, y, width, height, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, width, height);
+    ctx.strokeRect(x, y, width, height);
+  }
+
+  function drawOval(x, y, width, height, color) {
+    ctx.beginPath();
+    ctx.ellipse(x, y, width, height, 0, 0, 2 * Math.PI);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+  }
+
+  function drawTriangle(x, y, size, color) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + size, y + size);
+    ctx.lineTo(x - size, y + size);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  function drawHexagon(x, y, color) {
+    ctx.beginPath();
+    ctx.moveTo(x, y - 50);
+    for (let i = 1; i <= 6; i++) {
+      ctx.lineTo(x + 50 * Math.cos(i * 2 * Math.PI / 6), y + 50 * Math.sin(i * 2 * Math.PI / 6));
+    }
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  function drawParallelogram(x, y, color) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + 100, y);
+    ctx.lineTo(x + 150, y + 50);
+    ctx.lineTo(x + 50, y + 50);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  function drawTrapezoid(x, y, color) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + 100, y);
+    ctx.lineTo(x + 80, y + 50);
+    ctx.lineTo(x + 20, y + 50);
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  function drawStar(x, y, color) {
+    ctx.beginPath();
+    ctx.moveTo(x, y - 50);
+    for (let i = 1; i <= 10; i++) {
+      const angle = i * Math.PI / 5;
+      const r = i % 2 === 0 ? 25 : 50;
+      ctx.lineTo(x + r * Math.sin(angle), y - r * Math.cos(angle));
+    }
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+  }
+
+  function drawOctagon(x, y, color) {
+    ctx.beginPath();
+    ctx.moveTo(x + 50 * Math.cos(0), y + 50 * Math.sin(0));
+    for (let i = 1; i <= 8; i++) {
+      ctx.lineTo(x + 50 * Math.cos(i * 2 * Math.PI / 8), y + 50 * Math.sin(i * 2 * Math.PI / 8));
+    }
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+  }
+</script>
+
+</body>
+</html>
